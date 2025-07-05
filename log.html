@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Cookie Logger</title>
+  <style>
+    body { font-family: monospace; background: #111; color: #0f0; padding: 20px; }
+    h1 { color: red; }
+    .entry { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <h1>🔐 Cookie Logger</h1>
+  <div id="logs">No cookies logged yet.</div>
+
+  <script>
+    function displayLogs() {
+      const logs = JSON.parse(localStorage.getItem("cookieLogs") || "[]");
+      const container = document.getElementById("logs");
+
+      if (logs.length === 0) {
+        container.innerHTML = "<em>No cookies logged yet.</em>";
+        return;
+      }
+
+      container.innerHTML = logs.map((entry, index) => `
+        <div class="entry">
+          <strong>[${index + 1}]</strong> (${entry.time})<br>
+          ${entry.cookie}
+        </div>
+      `).join('');
+    }
+
+    displayLogs();
+
+    // Optional: Auto-refresh every 5 seconds
+    setInterval(displayLogs, 5000);
+  </script>
+</body>
+</html>
